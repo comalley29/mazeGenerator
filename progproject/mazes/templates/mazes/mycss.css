@@ -1,0 +1,32 @@
+.navbar {
+    overflow: hidden;
+    background-color: rgb(110, 109, 109);
+    font-family: Arial;
+  }
+
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+.btn {
+    border: none; /* Remove borders */
+    color: white; /* Add a text color */
+    padding: 14px 28px; /* Add some padding */
+    cursor: pointer; /* Add a pointer cursor on mouse-over */
+  }
+
+
+.div {
+    text-align: center;
+
+
+}
+.card{
+  margin-bottom: 10px;
+}
+

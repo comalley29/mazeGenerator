@@ -1,0 +1,35 @@
+{% extends 'mazes/base.html' %}
+{% load static %}
+{% block content %}
+    <br> 
+    <br>
+  
+    <h1></h1>
+    <br>
+    <div class="row no-gutters">
+        <div class="col-6 col-md-4">
+            <img src="{{style.image.url}}" alt="">
+        </div>
+        <div class="col-sm-6 col-md-8">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                  <h1 class="display-4">{{style.name}}</h1>
+                  <p class="lead">{{style.body}}
+                   <br>
+                   <br>
+                   <a href="{% url 'generate' %}" class="btn btn-primary" style="background-color: lightgrey; border-style: solid;
+                   border-color: black; color: black;" >Make Maze</a>
+                  <br>
+                  </p>
+                </div>
+                
+              </div>  
+        </div>
+    </div>
+    <div class="">
+        
+
+    </div>
+
+
+{% endblock %}

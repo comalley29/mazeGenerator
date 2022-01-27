@@ -1,0 +1,106 @@
+{% extends 'mazes/base.html' %}
+{% load static %}
+{% block content %}
+
+<br>
+    <br>
+     <h1>Generating a Maze:</h1>
+    <br>
+      <div class="row no-gutters">
+        <div class="col-6 col-md-4">
+                      <img src="static/images/Ellers.png" alt="">
+          </div>
+          <div class="col-sm-6 col-md-8">
+            <div class="jumbotron jumbotron-fluid">
+              <div class="container">
+                <h1 class="display-4"></h1>
+                  <p class="lead" style="font-size: 200%;"> This is where you can make your mazes.
+                    <form method = "GET">
+                      {{ form.as_p }}
+                      
+                      <input type = "submit" value = "Submit">
+                  </form>
+                <br>
+
+
+                <!-- <form name="mazeselect" action="test.py" method="get">
+                  <label for="styles">Choose a Style</label>
+                  <select id="styletype" name="styles">
+                    <option value="aldousbroder">Aldous-Broder</option>
+                    <option value="backtracking">Backtracking</option>
+                    <option value="binarytree">Binary-Tree</option>
+                    <option value="cellularautomation">Cellular-Automation</option>
+                    <option value="dungeonrooms">Dungeon Rooms</option>
+                    <option value="ellers">Ellers</option>
+                    <option value="growingtree">Growing-Tree</option>
+                    <option value="huntandkill">Hunt-and-Kill</option>
+                    <option value="kruskals">Kruskals</option>
+                    <option value="prims">Prims</option>
+                    <option value="recursivedivision">Recursive-Division</option>
+                    <option value="sidewinder">Sidewinder</option>
+                    <option value="wilsons">Wilsons</option>
+                  </select>
+                  <br>
+                  <br>
+                  <label for="width">Width (between 1 and 150):</label>
+                  <input type="number" id="width" name="width" min="1" max="150">
+                  <br>
+                  <br>
+                  <label for="height">Height (between 1 and 150):</label>
+                  <input type="number" id="height" name="height" min="1" max="150"> 
+                  <br>
+                  <br>
+                  <input type="submit" value="Submit">
+                           
+                </form> -->
+                
+                <!--form name="mazeselect" action="POST" method="get">
+                  <label for="styles">Choose a Style</label>
+                  <select id="styletype" name="styles">
+                    <option value="aldousbroder">Aldous-Broder</option>
+                    <option value="backtracking">Backtracking</option>
+                    <option value="binarytree">Binary-Tree</option>
+                    <option value="cellularautomation">Cellular-Automation</option>
+                    <option value="dungeonrooms">Dungeon Rooms</option>
+                    <option value="ellers">Ellers</option>
+                    <option value="growingtree">Growing-Tree</option>
+                    <option value="huntandkill">Hunt-and-Kill</option>
+                    <option value="kruskals">Kruskals</option>
+                    <option value="prims">Prims</option>
+                    <option value="recursivedivision">Recursive-Division</option>
+                    <option value="sidewinder">Sidewinder</option>
+                    <option value="wilsons">Wilsons</option>
+                  </select>
+                  <br>
+                  <br>
+                  <label for="width">Width (between 1 and 150):</label>
+                  <input type="number" id="width" name="width" min="1" max="150">
+                  <br>
+                  <br>
+                  <label for="height">Height (between 1 and 150):</label>
+                  <input type="number" id="height" name="height" min="1" max="150"> 
+                  <br>
+                  <br>
+                  <input type="submit" value="Submit">
+                           
+                </form-->
+                     
+                <br>
+              </div>
+                </p>
+              </div>         
+            </div>  
+          </div>
+        </div>
+      <div class="">
+            
+        
+        
+          
+      </div>
+
+
+
+
+
+{% endblock %}

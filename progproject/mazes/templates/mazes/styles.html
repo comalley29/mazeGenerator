@@ -1,0 +1,27 @@
+
+{% extends 'mazes/base.html' %}
+{% load static %}
+{% block content %}
+    <br> 
+    <br>
+  
+     <h1>Maze Styles: </h1>
+    <br>
+  
+    <div class="row row-cols-2">
+    {% for style in styles %}
+      <div class="card-deck mt-5" style="width: 18rem;">
+      <img src="{{style.image.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{style.name}}</h5>
+          <p class="card-text">{{style.body|truncatewords:30}}</p>
+          <a href="{% url 'stylepage' style.id %}" class="btn btn-primary" style="background-color: lightgrey; border-style: solid;
+          border-color: black; color: black;">View Maze</a>
+        </div>
+      </div>
+    {% endfor %}
+
+
+    </div>
+{% endblock %}
+
