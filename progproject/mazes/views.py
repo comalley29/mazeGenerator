@@ -4,7 +4,8 @@ from mazes.models import Style
 from . forms import InputUserData, MazeInputs
 from django.shortcuts import render
 from .forms import MazeInputs
-
+from django.views.generic.base import RedirectView
+from django.shortcuts import redirect
 
 # Create your views here.
 
@@ -209,5 +210,24 @@ def generate_view(request):
     context = { "form": MazeInputs() }
     context['form'] = MazeInputs()
     return render( request, "generate.html", context)
+
+
+def generate_maze(request):
+    form = MazeInputs()
+    if request.method == "POST": 
+        form = MazeInputs(request.POST, request.FILES)
+        if form.is_valid():
+            Maze = form.save(commit=False)
+            Maze.name = request.styles_field
+            Maze.width = request.width_field
+            Maze.height = request.height_field
+            Maze.save()
+
+            return redirect('home')
+        else:
+            form = MazeInputs()
+
+    return render(request, 'mazes/generate.html', {'form':form})
+
 
 
