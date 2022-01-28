@@ -23,22 +23,6 @@ import cgitb #found this but isn't used?
 
 form = cgi.FieldStorage()
 
-
-
-
-
-
-
-#if form.getvalue('styles') == "aldousbroder":
-    #Mazestyle = "AldousBroder"
-
-#if form.getvalue('styles') == "backtracking":
-    #Mazestyle = "BacktrackingGenerator"
-
-#print(Mazestyle)
-
-
-
 m = Maze()
 m.generator = Prims(27, 34)
 m.generate()
