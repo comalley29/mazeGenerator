@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from mazes.models import Style
-from . forms import InputUserData, MazeInputs
+from . forms import MazeInputs
 from django.shortcuts import render
 from .forms import MazeInputs
 from django.views.generic.base import RedirectView
@@ -34,11 +34,22 @@ def stylepage(request, style_id):
 def generate(request):
     style=Style.objects.all()
 
-    #if request.POST:
+    form = MazeInputs()
+    if request.method == "POST": 
+        form = MazeInputs(request.POST, request.FILES)
+        if form.is_valid():
+            Maze = form.save()
+            print(form["height"])
+           
+
+            return render(request, 'mazes/download.html')
+    else:
+        return render(request, 'mazes/generate.html', {'form':form})
+    
 
     
 
-    return render(request, 'mazes/generate.html')
+    #return render(request, 'mazes/generate.html')
 
 
 def download(request):
@@ -193,12 +204,7 @@ def wilsons(request, style_id):
     context = {'style':style, 'title':title, 'body':body}
     return render(request, 'mazes/wilsons.html', context)
 
-def inputUserData(request):
-    form = InputUserData()
-    if request.method == 'POST':    
-        form = InputUserData(request.POST, request.FILES)
-        if form.is_valid():
-                input = form.save(commit=False)
+
 
 
 
@@ -217,17 +223,14 @@ def generate_maze(request):
     if request.method == "POST": 
         form = MazeInputs(request.POST, request.FILES)
         if form.is_valid():
-            Maze = form.save(commit=False)
-            Maze.name = request.styles_field
-            Maze.width = request.width_field
-            Maze.height = request.height_field
-            Maze.save()
+            Maze = form.save()
+           
 
             return redirect('home')
-        else:
-            form = MazeInputs()
+    else:
+        return render(request, 'mazes/generate.html', {'form':form})
 
-    return render(request, 'mazes/generate.html', {'form':form})
+
 
 
 

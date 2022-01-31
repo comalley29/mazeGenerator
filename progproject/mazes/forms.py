@@ -1,8 +1,6 @@
-class InputUserData():
-    class Meta:
-        fields = ['Style', 'Height', 'Width']
 
-
+from django import forms
+from .models import Maze
 from django import forms
 
 Maze_Styles =(
@@ -22,10 +20,12 @@ Maze_Styles =(
 
 )
 
-class MazeInputs(forms.Form):
-    styles_field = forms.ChoiceField(choices = Maze_Styles)
-    height_field = forms.IntegerField(help_text = "Enter a value for the height of the maze.")
-    width_field = forms.IntegerField(help_text = "Enter a value for the width of the maze.")
+
+
+class MazeInputs(forms.ModelForm):
+    class Meta: 
+        model = Maze
+        fields = ['name','width','height']
     
 
 

@@ -17,14 +17,15 @@
                   <p class="lead" style="font-size: 200%;"> This is where you can make your mazes!.
 
 
-                    <!--form method = "post" action="test.py">
+                    <form method = "post" action="">
+                      {% csrf_token %}
                       {{ form.as_p }}
                       
                       <input type = "submit" value = "Submit">
 
 
-                      
-                  </form-->
+                    
+                  </form>
                 <br>
                 <br>
               </div>

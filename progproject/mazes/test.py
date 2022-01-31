@@ -23,9 +23,12 @@ import cgitb #found this but isn't used?
 
 form = cgi.FieldStorage()
 
+
+
 m = Maze()
 m.generator = Prims(27, 34)
 m.generate()
+
 
 #print(m.tostring())            # print walls only
 #print(m.tostring(True))        # print walls and entrances

@@ -1,5 +1,4 @@
 from django.urls import path, include 
-from .views import home, styles
 from mazes import views
 from django.conf.urls.static import static
 from django.conf import settings
@@ -8,8 +7,11 @@ urlpatterns = [
     path('home', views.home, name='home'),
     path('styles', views.styles, name='styles'),
     path('generate', views.generate, name='generate'),
+    #path('submitmaze', views.generate, name='submitmaze'),
+
     path('download', views.download, name='download'),
     path('<int:style_id>/', views.stylepage, name='stylepage'),
+
     path('aldousbroder', views.aldousbroder, name='aldousbroder'),
     path('backtracking', views.backtracking, name='backtracking'),
     path('binarytree', views.binarytree, name='binarytree'),
