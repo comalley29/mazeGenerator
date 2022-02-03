@@ -6,7 +6,30 @@ from django.shortcuts import render
 from .forms import MazeInputs
 from django.views.generic.base import RedirectView
 from django.shortcuts import redirect
-
+from .test import makeMaze
+from re import A
+from .models import Maze
+from mazelib import Maze
+from mazelib.generate.Prims import Prims
+from mazelib.mazelib import Maze
+from mazelib.generate.AldousBroder import AldousBroder
+from mazelib.generate.BacktrackingGenerator import BacktrackingGenerator
+from mazelib.generate.BinaryTree import BinaryTree
+from mazelib.generate.CellularAutomaton import CellularAutomaton
+from mazelib.generate.Division import Division
+from mazelib.generate.DungeonRooms import DungeonRooms
+from mazelib.generate.Ellers import Ellers
+from mazelib.generate.GrowingTree import GrowingTree
+from mazelib.generate.HuntAndKill import HuntAndKill
+from mazelib.generate.Kruskal import Kruskal
+from mazelib.generate.Prims import Prims
+from mazelib.generate.Sidewinder import Sidewinder
+from mazelib.generate.TrivialMaze import TrivialMaze
+from mazelib.generate.Wilsons import Wilsons
+import django
+from django.conf import settings
+import cgi
+import matplotlib.pyplot as plt
 # Create your views here.
 
 def home(request):
@@ -30,6 +53,13 @@ def stylepage(request, style_id):
     context = {'style':style, 'title':title, 'body':body}
     return render (request, 'mazes/stylepage.html', context)
 
+def showPNG(grid):
+    """Generate a simple image of the maze."""
+    plt.figure(figsize=(10, 5))
+    plt.imshow(grid, cmap=plt.cm.binary, interpolation='nearest')
+    plt.xticks([]), plt.yticks([])
+    plt.show()
+
 
 def generate(request):
     style=Style.objects.all()
@@ -38,16 +68,23 @@ def generate(request):
     if request.method == "POST": 
         form = MazeInputs(request.POST, request.FILES)
         if form.is_valid():
-            Maze = form.save()
-            print(form["height"])
-           
-
-            return render(request, 'mazes/download.html')
+            height = request.POST["height"]
+            width = request.POST["width"]
+            func = request.POST["name"]
+            print(func)
+            print(height)
+            print(width)
+            makeMaze(func, height, width)
+            if func == Prims:
+                m = Maze()
+                m.generator = Prims(int(height), int(width))
+                m.generate()
+                showPNG(m.grid)
+                return render(request, 'mazes/download.html')
     else:
         return render(request, 'mazes/generate.html', {'form':form})
     
 
-    
 
     #return render(request, 'mazes/generate.html')
 
@@ -218,7 +255,7 @@ def generate_view(request):
     return render( request, "generate.html", context)
 
 
-def generate_maze(request):
+#def generate_maze(request):
     form = MazeInputs()
     if request.method == "POST": 
         form = MazeInputs(request.POST, request.FILES)

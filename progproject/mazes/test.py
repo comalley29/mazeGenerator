@@ -16,18 +16,10 @@ from mazelib.generate.Prims import Prims
 from mazelib.generate.Sidewinder import Sidewinder
 from mazelib.generate.TrivialMaze import TrivialMaze
 from mazelib.generate.Wilsons import Wilsons
-
-
+import django
+from django.conf import settings
 import cgi
-import cgitb #found this but isn't used?
-
-form = cgi.FieldStorage()
-
-
-
-m = Maze()
-m.generator = Prims(27, 34)
-m.generate()
+import matplotlib.pyplot as plt
 
 
 #print(m.tostring())            # print walls only
@@ -38,8 +30,6 @@ m.generate()
 
 
 
-import matplotlib.pyplot as plt
-
 def showPNG(grid):
     """Generate a simple image of the maze."""
     plt.figure(figsize=(10, 5))
@@ -48,4 +38,21 @@ def showPNG(grid):
     plt.show()
     x = plt
 
+#m = Maze()
+#m.generator = Prims(int(height), int(width))
+#m.generate()
+#showPNG(m.grid)
+
+m = Maze()
+m.generator = Prims(20, 20)
+m.generate()
 showPNG(m.grid)
+
+
+
+def makeMaze(height, width, func):
+    if func == Prims:
+        m = Maze()
+        m.generator = Prims(int(height), int(width))
+        m.generate()
+        showPNG(m.grid)
